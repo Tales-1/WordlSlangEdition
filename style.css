@@ -82,8 +82,6 @@ header{
     display:flex;
     flex-direction: column;
     text-align: center;
-    
-    grid-template-columns: repeat(18,20px);
     gap:clamp(1rem, 2.5vw, 2.8rem);
     
   }
@@ -94,8 +92,8 @@ header{
     background:rgba(0,0,0,0.05);
     font-size: .9rem;
     font-family: 'Lato', sans-serif;
-    height: clamp(50px,5vw,75px);
-    width: clamp(35px,5vw,55px);
+    height: clamp(40px,5vw,75px);
+    width: clamp(28px,5vw,55px);
     border-radius: 7px;
     cursor:pointer;
     transform-origin: center;
@@ -113,19 +111,17 @@ header{
   }
 
   .three{
-    margin-left: 2.2em;
+    margin-left: 3em;
   }
 
 .control{
     display: flex;
     gap: .4rem;
-    grid-row: 4;
-    margin-left: auto;
+    margin-inline: auto;
     
 }
 
   .enter{
-    grid-row:4;
     background:none;
     border: none;
     padding:.5rem;
