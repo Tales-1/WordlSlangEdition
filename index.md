@@ -1,37 +1,147 @@
-## Welcome to GitHub Pages
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://kit.fontawesome.com/3bd6449e4e.js" crossorigin="anonymous"></script>
+    <title>Wordl Slang</title>
+</head>
+<body>
+    
 
-You can use the [editor on GitHub](https://github.com/Tales-1/tales.github.io/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+    <header>
+        <span class="show-result"><i class="fa-solid fa-gear"></i></span>
+        <h1>Wordl</h1>
+        <p class="sub-heading">Slang edition</p>
+        <p class="caution">Caution, not for boomers</p>
+        
+    </header>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+    <div class="alert">
+        <p>Copied to Clipboard</p>
+    </div>
 
-### Markdown
+    <div class="result-container">
+        <div class="result-box">
+            <h2 id="result"></h2>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+            <div class="share">
+                <button id="share-btn">Share Result</button>
+            </div>
 
-```markdown
-Syntax highlighted code block
+            <div class="next-wordl">
+                <h3>Next Wordl</h3>
+                <div id="time-el">
+                    <span class="time hours"></span>
+                    <span class="time minutes"></span>
+                    <span class="time seconds"></span>
+                </div>
+            </div>
+        </div>
+        <div class="closebtn">
+        <span id="close"></span>
+    </div>
+    </div>
 
-# Header 1
-## Header 2
-### Header 3
+    <div class="grid-container">
+            
+        <div class="letters" data-id="1">
+            <span class="first block"></span>
+            <span class="first block"></span>
+            <span class="first block"></span>
+            <span class="first block"></span>
+            <span class="first block"></span>
+        </div>
+        
+        <div class="letters" data-id="2">
+            <span class="second block"></span>
+            <span class="second block"></span>
+            <span class="second block"></span>
+            <span class="second block"></span>
+            <span class="second block"></span>
+        </div>
+        
+        <div class="letters" data-id="3">
+            <span class="third block"></span>
+            <span class="third block"></span>
+            <span class="third block"></span>
+            <span class="third block"></span>
+            <span class="third block"></span>
+        </div>
+        <div class="letters" data-id="4">
+            <span class="fourth block"></span>
+            <span class="fourth block"></span>
+            <span class="fourth block"></span>
+            <span class="fourth block"></span>
+            <span class="fourth block"></span>
+        </div>
+        
+        <div class="letters" data-id="5">
+            <span class="fifth block"></span>
+            <span class="fifth block"></span>
+            <span class="fifth block"></span>
+            <span class="fifth block"></span>
+            <span class="fifth block"></span>
+        </div>
+        <div class="letters" data-id="6">
+            <span class="sixth block"></span>
+            <span class="sixth block"></span>
+            <span class="sixth block"></span>
+            <span class="sixth block"></span>
+            <span class="sixth block"></span>
+        </div>
+</div> 
 
-- Bulleted
-- List
+<div class="container">
+<div class="keyboard">
+<div class="flex-item one">
+  <span class="key">Q</span>
+  <span class="key">W</span>
+  <span class="key">E</span>
+  <span class="key">R</span>
+  <span class="key">T</span>
+  <span class="key">Y</span>
+  <span class="key">U</span>
+  <span class="key">I</span>
+  <span class="key">O</span>
+  <span class="key ">P</span>
+  </div>
 
-1. Numbered
-2. List
+  <div class="flex-item two">
+  <span class="key">A</span>
+  <span class="key">S</span>
+  <span class="key">D</span>
+  <span class="key">F</span>
+  <span class="key">G</span>
+  <span class="key">H</span>
+  <span class="key">J</span>
+  <span class="key">K</span>
+  <span class="key">L</span>
+</div>
 
-**Bold** and _Italic_ and `Code` text
+<div class="flex-item three">
+  <span class="key">Z</span>
+  <span class="key">X</span>
+  <span class="key">C</span>
+  <span class="key">V</span>
+  <span class="key">B</span>
+  <span class="key">N</span>
+  <span class="key">M</span>
+  <div class="control">
+    <button class="enter">Enter</button>
+    <button class="return">Delete</button>
+  </div>
+</div>
 
-[Link](url) and ![Image](src)
-```
+  
+</div>
+</div> 
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Tales-1/tales.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+    <script  type="module" src="./app.js"></script>
+    
+</body>
+</html>
