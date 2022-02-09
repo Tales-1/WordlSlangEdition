@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Quicksand:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;700&display=swap');
+body{
+    margin:0;
+    padding:0;
+    height:100vh;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    gap:.8em;
+    font-size: clamp(.9rem, 2.5vw, 2rem);
+    
+  }
+
+*,
+*::before,
+*::after {
+ box-sizing: border-box;
+}
+
+h1,p{
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+}
+
+.caution{
+    position: absolute;
+    font-size: .5rem;
+    top: 2rem;
+    right: 2rem;
+    transform: rotate(25deg);
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    padding-block: 1em;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    width: 100vw;
+
+}
+
+.sub-heading{
+    transform: rotate(-15deg) translateY(15px);
+}
+
+  .grid-container{
+      display: grid;
+      margin-top: 1em;
+      place-items: center;
+      gap:.5em;
+      width: min(70%,500px);
+    
+  }
+  
+  .letters{
+    display:flex;
+    gap:.5em;
+  }
+  
+  .block{
+      display: grid;
+      place-items: center;
+    border: 2px solid rgba(0,0,0,0.3);
+    font-size: 2rem;
+    font-family:'Lato', sans-serif ;
+    height: clamp(50px,5vw,100px);
+    width: clamp(50px,5vw,100px);
+    transition: all 500ms ease-in-out;
+  }
+  
+  .container{
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      width: 100vw;
+  }
+  
+  
+  .keyboard{
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    
+    grid-template-columns: repeat(18,20px);
+    gap:clamp(1rem, 2.5vw, 2.8rem);
+    
+  }
+  
+  .key{
+    display: grid;
+    place-items: center;
+    background:rgba(0,0,0,0.05);
+    font-size: .9rem;
+    font-family: 'Lato', sans-serif;
+    height: clamp(50px,5vw,75px);
+    width: clamp(35px,5vw,55px);
+    border-radius: 7px;
+    cursor:pointer;
+    transform-origin: center;
+    transition: all 300ms ease-in-out;
+    
+  }
+
+  .flex-item{
+    display: flex;
+    gap: .3rem;
+  }
+
+  .two{
+    margin-left: 1em;
+  }
+
+  .three{
+    margin-left: 2.2em;
+  }
+
+.control{
+    display: flex;
+    gap: .4rem;
+    grid-row: 4;
+    margin-left: auto;
+    
+}
+
+  .enter{
+    grid-row:4;
+    background:none;
+    border: none;
+    padding:.5rem;
+    cursor:pointer;
+    background:rgba(0,0,0,0.05);}
+
+    .return{
+        background:none;
+        border: none;
+        background:rgba(0,0,0,0.05);
+        cursor: pointer;
+        
+    }
+    
+  .wrong{
+      background: rgba(0,0,0,0.4);
+      color: white;
+      font-weight: 600;
+  }
+  
+  .orange{
+      background: orange;
+      color: white;
+      font-weight: 600;
+  }
+  
+  .green{
+      background: green;
+      color: white;
+      font-weight: 600;
+  }
+
+  .result-container{
+      position: fixed;
+      display: grid;
+      place-items: center;
+      font-size: 3vw;
+      background-color: white;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      inset: 20%;
+      z-index: 100;
+      visibility: hidden;
+      
+  }
+
+  .result-box{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    font-family: 'Quicksand', sans-serif;
+    gap: .4em;
+  }
+
+  .show-result{
+    position: absolute;
+    top: 1.5em;
+    left: 1.5em;
+    cursor: pointer;
+  }
+
+ .share{
+   place-self: center;
+ }
+
+ .alert{
+   position: fixed;
+   top:0;
+   color: white;
+   padding: 1em;
+   background-color: green;
+   width: 100vw;
+   text-align: center;
+   visibility: hidden;
+ }
+
+ #share-btn{
+   background: rgb(89, 196, 27);
+   border: none;
+   border-radius: .5rem;
+   color: white;
+   padding: .5rem 1.5rem;
+   cursor: pointer;
+ }
+
+  .next-wordl{
+    text-align: center;
+    margin-inline:auto;
+    font-size: 1.5rem;
+  }
+
+  #result{
+    margin: auto;
+  }
+  .time-el{
+    display: flex;
+    gap: .4rem;
+    
+  }
+
+  .time{
+    padding: .3rem;
+    
+  }
+
+
+  .show{
+      visibility: visible;
+  }
+
+  .closebtn{
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    padding: .3rem;
+    
+  }
+  #close{
+    position: absolute;
+    height: 1.3em;
+    width: 2px;
+    background: black;
+    transform: rotate(45deg);
+    
+  }
+
+  #close::before{
+    content: "";
+    position: absolute;
+    height: 1.3em;
+    transform: rotate(-90deg);
+    width: 2px;
+    background: black;
+    cursor: pointer;
+  }
