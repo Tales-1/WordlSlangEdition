@@ -1,14 +1,19 @@
 import {words} from "./library.js";
-import{timeLeft} from"./library.js";
 
+
+
+
+let play = true;
 
 setInterval(timeLeft,1000);
 timeLeft()
 
-let targetWord = words[0];
 
 
-console.log(targetWord)
+
+let month = new Date().getMonth();
+let today = new Date().getDate();
+let current = new Date(2022,month,today,0,0).getTime();
 const firstTry = document.querySelectorAll(".first");
 const secondTry = document.querySelectorAll(".second");
 const thirdTry = document.querySelectorAll(".third");
@@ -28,10 +33,27 @@ const rows = Array.from(gridContainer.children);
 const shareBtn = document.getElementById("share-btn");
 const alert = document.querySelector(".alert")
 const cog = document.querySelector(".show-result");
-let play = true;
 let counter = 0;
-
+let targetWord;
 let displayArray = [firstTry,secondTry,thirdTry,fourthTry,fifthTry,sixthTry];
+
+
+
+
+// generate ID and select word of the day
+generateIds(words);
+selectWord(words);
+
+//EVENT LISTENERS
+window.addEventListener("DOMContentLoaded",()=>{
+    play = true;
+    let items = getLocalStorage();
+    if(items.length>0){
+        refreshDisplay(items);
+        
+    }
+    
+})
 
 
 
@@ -75,22 +97,25 @@ enter.addEventListener("click",()=>{
         }
 
     })
-}
     targetWord = copy;
+    addToLocalStorage(answer);
     let checker = 0;
     for(let i=0; i<targetWord.length;i++){
         if(answer[i]===targetWord[i]){
             checker++
         }
     }
+ 
     if(checker ===5 || turn ===sixthTry){
         setTimeout(result,3300);
         play = false;
         
     }
-    addToLocalStorage(answer);
+    
     turnNo++
     counter = 0;
+}
+    
 })
 
 closeBtn.addEventListener("click", ()=>{
@@ -99,31 +124,18 @@ closeBtn.addEventListener("click", ()=>{
 
 shareBtn.addEventListener("click",()=>{
     updateClipboard(`
-    I got ${turnNo}/6,
-     try Wordl!`
+    I got ${turnNo}/6, try Wordl!`
     );
     showAlert()
 })
 
 cog.addEventListener("click",()=>{
-    youWin.classList.add("show")
+    result()
+
 })
 
 
-window.addEventListener("DOMContentLoaded",()=>{
-    let items = getLocalStorage();
-    if(items.length > 0){
-        play = false;
-        displayAnswers()
-    }
 
-    displayArray.forEach((element,index)=>{
-        if(index < items.length){
-            displayColor(element);
-        }
-    })
-    
-})
 
 
 
@@ -254,21 +266,21 @@ function addToLocalStorage(row){
 
 function removeFromLocalStorage(){
     let items = getLocalStorage();
-    items.forEach((item)=>{
-        items.shift(item)
-    })
+    items = []
     localStorage.setItem("list",JSON.stringify(items))
 }
 
+// DISPLAY PREVIOUS RESULT
 
 function displayAnswers(){
     let items = getLocalStorage();
-    
+    let checker=0;
     if(items.length > 0){
          items.forEach((item,index)=>{
               for(let i = 0;i<rows.length-1;i++){
                  rows[index].children[i].innerHTML= item.row[i];
               }
+              console.log(checker)
          })
      }
      
@@ -297,3 +309,68 @@ function displayAnswers(){
 
     })
  }
+
+  function timeLeft(){
+    
+    const timeContainer = document.getElementById("time-el");
+    let metrics = Array.from(timeContainer.children);
+    let tomorrow = new Date().getDate()+1;
+    let nextMinute = new Date().getMinutes()+1;
+    let thisMonth = new Date().getMonth();
+    let deadline = new Date(2022, thisMonth, tomorrow,0,0).getTime();
+    let currentTime = new Date().getTime();
+    let remainder = deadline - currentTime;
+    const oneDay = 24 * 60 * 60 * 1000;
+    const oneHour = 60 * 60 * 1000;
+    const oneMinute = 60 * 1000;
+    if(remainder < 1000){
+         removeFromLocalStorage()
+         play = true;
+     }
+
+     let hours = Math.floor((remainder % oneDay) / oneHour);
+     let minutes = Math.floor((remainder % oneHour ) / oneMinute);
+     let seconds = Math.floor((remainder % oneMinute) / 1000);
+
+     const addZero = (i)=>{
+         if(i < 10){
+             return `0${i}`
+         }
+         return i
+     }
+
+     let remaining = [hours,minutes,seconds];
+     metrics.forEach((metric,index)=>{
+         metric.innerHTML = addZero(remaining[index]);
+     })
+    
+ }
+
+ function refreshDisplay(items){
+    displayAnswers()
+    displayArray.forEach((element,index)=>{
+        if(index < items.length){
+            displayColor(element);
+        }
+
+        if(index===items.length-1){
+            play = false;
+        }
+    })}
+
+function generateIds(arr){
+    arr.forEach((item,index)=>{
+        arr[index].id = new Date(2022,month,today+index,0,0).getTime();
+    })
+    console.log(arr[0].id);
+}
+
+function selectWord(arr){
+
+    arr.forEach((item,index)=>{
+        if(arr[index].id===current){
+            targetWord = arr[index].word;
+    }
+})
+
+}
