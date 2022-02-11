@@ -8,11 +8,9 @@ let play = true;
 setInterval(timeLeft,1000);
 timeLeft()
 
-
-
-
 let month = new Date().getMonth();
 let today = new Date().getDate();
+let thisMonth = new Date().getMonth();
 let current = new Date(2022,month,today,0,0).getTime();
 const firstTry = document.querySelectorAll(".first");
 const secondTry = document.querySelectorAll(".second");
@@ -36,21 +34,26 @@ const cog = document.querySelector(".show-result");
 let counter = 0;
 let targetWord;
 let displayArray = [firstTry,secondTry,thirdTry,fourthTry,fifthTry,sixthTry];
-
+const definitionSlider = document.querySelector(".definition-slider")
+const definition = document.createElement("p");
+definition.setAttribute("id", "definition");
+definition.innerHTML="Definition";
+const shareCont = document.querySelector(".share")
+const triangle = document.getElementById("triangle")
+let selectDefinition;
 
 
 
 // generate ID and select word of the day
-generateIds(words);
-selectWord(words);
 
+selectWord(words,targetWord)
+
+console.log(targetWord)
 //EVENT LISTENERS
 window.addEventListener("DOMContentLoaded",()=>{
-    play = true;
     let items = getLocalStorage();
     if(items.length>0){
         refreshDisplay(items);
-        
     }
     
 })
@@ -81,19 +84,19 @@ enter.addEventListener("click",()=>{
         answer.push(letter.innerHTML);
         for(let i = 0; i<targetWord.length;i++){
             if(letter.innerHTML === targetWord[i] && index === i){
-            setTimeout(changeGreen,250*index,letter)
+            setTimeout(changeGreen,270*index,letter)
             targetWord[i] = "."
             return;
            }
 
            else if(letter.innerHTML === targetWord[i] && index !== i){
-           setTimeout(changeOrange,250*index,letter)
+           setTimeout(changeOrange,270*index,letter)
            return;
            }
 
         }
         if(!letter.classList.contains("green") && !letter.classList.contains("orange")){
-            setTimeout(changeGrey,250*index,letter);
+            setTimeout(changeGrey,270*index,letter);
         }
 
     })
@@ -107,7 +110,9 @@ enter.addEventListener("click",()=>{
     }
  
     if(checker ===5 || turn ===sixthTry){
-        setTimeout(result,3300);
+        setTimeout(result,2500);
+        shareCont.appendChild(definition)
+        addEvtListner()
         play = false;
         
     }
@@ -117,6 +122,7 @@ enter.addEventListener("click",()=>{
 }
     
 })
+
 
 closeBtn.addEventListener("click", ()=>{
     youWin.classList.remove("show")
@@ -131,11 +137,18 @@ shareBtn.addEventListener("click",()=>{
 
 cog.addEventListener("click",()=>{
     result()
+    if(play===false){
+        shareCont.appendChild(definition)
+        addEvtListner()
+        
+       
+    }
 
 })
 
-
-
+definitionSlider.addEventListener("click",()=>{
+    definitionSlider.classList.remove("slide")
+})
 
 
 
@@ -220,6 +233,12 @@ function changeGrey(letter){
     })
 
 }
+function addEvtListner(){
+    definition.addEventListener("click",()=>{
+        definitionSlider.classList.add("slide");
+    })
+}
+
 
 function showAlert(){
     alert.classList.add("show");
@@ -233,7 +252,7 @@ function result(){
     `Result:
     ${turnNo}/6
     `;
-
+    
 }
 
 function updateClipboard(newClip) {
@@ -280,43 +299,46 @@ function displayAnswers(){
               for(let i = 0;i<rows.length-1;i++){
                  rows[index].children[i].innerHTML= item.row[i];
               }
-              console.log(checker)
          })
      }
-     
 }
 
 
 
  function displayColor(array){
-
+     let checker = 0;
     array.forEach((letter,index)=>{
         for(let i = 0; i<targetWord.length;i++){
             if(letter.innerHTML === targetWord[i] && index === i){
-            setTimeout(changeGreen,250*index,letter)
+            setTimeout(changeGreen,270*index,letter)
+            checker++
             return;
            }
 
            else if(letter.innerHTML === targetWord[i] && index !== i){
-           setTimeout(changeOrange,250*index,letter)
+           setTimeout(changeOrange,270*index,letter)
            return;
            }
 
         }
         if(!letter.classList.contains("green") && !letter.classList.contains("orange")){
-            setTimeout(changeGrey,250*index,letter);
+            setTimeout(changeGrey,270*index,letter);
         }
 
     })
+    if(checker===5){play=false}
  }
+ function autoRefresh() {
+    window.location = window.location.href;
+}
 
-  function timeLeft(){
-    
+function timeLeft(){
     const timeContainer = document.getElementById("time-el");
+    let month = new Date().getMonth();
+    let today = new Date().getDate();
+    let thisMonth = new Date().getMonth();
     let metrics = Array.from(timeContainer.children);
     let tomorrow = new Date().getDate()+1;
-    let nextMinute = new Date().getMinutes()+1;
-    let thisMonth = new Date().getMonth();
     let deadline = new Date(2022, thisMonth, tomorrow,0,0).getTime();
     let currentTime = new Date().getTime();
     let remainder = deadline - currentTime;
@@ -325,6 +347,7 @@ function displayAnswers(){
     const oneMinute = 60 * 1000;
     if(remainder < 1000){
          removeFromLocalStorage()
+         autoRefresh()
          play = true;
      }
 
@@ -348,29 +371,31 @@ function displayAnswers(){
 
  function refreshDisplay(items){
     displayAnswers()
+    let counter = 0;
     displayArray.forEach((element,index)=>{
         if(index < items.length){
             displayColor(element);
         }
-
+       
         if(index===items.length-1){
-            play = false;
+            turnNo = index+1;
         }
     })}
 
-function generateIds(arr){
-    arr.forEach((item,index)=>{
-        arr[index].id = new Date(2022,month,today+index,0,0).getTime();
-    })
-    console.log(arr[0].id);
-}
 
-function selectWord(arr){
-
+function selectWord(arr,tg){
+    let today = new Date().getDate();
+    let thisMonth = new Date().getMonth();
     arr.forEach((item,index)=>{
-        if(arr[index].id===current){
+        if(arr[index].date===today && arr[index].month===thisMonth){
             targetWord = arr[index].word;
+            selectDefinition = arr[index].definition;
+            definitionSlider.innerHTML += selectDefinition;
+           
     }
 })
-
 }
+
+
+
+
