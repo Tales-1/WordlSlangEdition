@@ -41,7 +41,7 @@ definition.innerHTML="Definition";
 const shareCont = document.querySelector(".share")
 const triangle = document.getElementById("triangle")
 let selectDefinition;
-
+const debug = document.getElementById("debug")
 
 
 // generate ID and select word of the day
@@ -150,6 +150,10 @@ definitionSlider.addEventListener("click",()=>{
     definitionSlider.classList.remove("slide")
 })
 
+debug.addEventListener("click",()=>{
+    removeFromLocalStorage();
+    window.location = window.location.href;
+})
 
 
 
