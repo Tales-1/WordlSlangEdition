@@ -26,9 +26,14 @@
     <div class="result-container">
         <div class="result-box">
             <h2 id="result"></h2>
-
+            
             <div class="share">
                 <button id="share-btn">Share Result</button>
+            </div>
+            
+            <div class="definition-slider ">
+                <h4>Definition:</h4>
+                <span id="triangle"></span>
             </div>
 
             <div class="next-wordl">
@@ -41,13 +46,12 @@
             </div>
         </div>
         <div class="closebtn">
-        <span id="close"></span>
-    </div>
+        <span id="close" class="cross"></span></div>
     </div>
 
     <div class="grid-container">
             
-        <div class="letters" data-id="1">
+        <div class="letters" data-stop="1">
             <span class="first block"></span>
             <span class="first block"></span>
             <span class="first block"></span>
@@ -55,7 +59,7 @@
             <span class="first block"></span>
         </div>
         
-        <div class="letters" data-id="2">
+        <div class="letters" data-stop="2">
             <span class="second block"></span>
             <span class="second block"></span>
             <span class="second block"></span>
@@ -63,14 +67,14 @@
             <span class="second block"></span>
         </div>
         
-        <div class="letters" data-id="3">
+        <div class="letters" data-stop="3">
             <span class="third block"></span>
             <span class="third block"></span>
             <span class="third block"></span>
             <span class="third block"></span>
             <span class="third block"></span>
         </div>
-        <div class="letters" data-id="4">
+        <div class="letters" data-stop="4">
             <span class="fourth block"></span>
             <span class="fourth block"></span>
             <span class="fourth block"></span>
@@ -78,14 +82,14 @@
             <span class="fourth block"></span>
         </div>
         
-        <div class="letters" data-id="5">
+        <div class="letters" data-stop="5">
             <span class="fifth block"></span>
             <span class="fifth block"></span>
             <span class="fifth block"></span>
             <span class="fifth block"></span>
             <span class="fifth block"></span>
         </div>
-        <div class="letters" data-id="6">
+        <div class="letters" data-stop="6">
             <span class="sixth block"></span>
             <span class="sixth block"></span>
             <span class="sixth block"></span>
