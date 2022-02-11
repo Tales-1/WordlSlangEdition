@@ -381,3 +381,17 @@ a:hover{
       
     }
   }
+
+  #debug{
+    position: absolute;
+    bottom: 1em;
+    right:1em;
+    padding: .1rem;
+    border: none;
+    border-bottom: 1px solid red;
+    background: none;
+  }
+  #debug:hover{
+    opacity: 80%;
+    cursor: pointer;
+  }
