@@ -112,7 +112,7 @@ enter.addEventListener("click",()=>{
  
     if(checker ===5 || turn ===sixthTry){
         setTimeout(result,2500);
-        shareBtn.innerHTML = `<a href="whatsapp://send?text=I got ${turnNo}/6 try Wordl Slang! @ https://tales-1.github.io/WordlSlangEdition/">Share Result</a>`;
+        shareBtn.innerHTML = `<a href="whatsapp://send?text=I got ${turnNo+1}/6 try Wordl Slang! @ https://tales-1.github.io/WordlSlangEdition/">Share Result</a>`;
         shareCont.appendChild(definition)
         addEvtListner()
         play = false;
@@ -141,7 +141,7 @@ shareBtn.addEventListener("click",()=>{
 cog.addEventListener("click",()=>{
     result()
     if(play===false){
-        shareBtn.innerHTML =`<a href="whatsapp://send?text=I got ${turnNo}/6 try Wordl Slang! @ https://tales-1.github.io/WordlSlangEdition/">Share Result</a>`;
+        shareBtn.innerHTML =`<a href="whatsapp://send?text=I got ${turnNo+1}/6 try Wordl Slang! @ https://tales-1.github.io/WordlSlangEdition/">Share Result</a>`;
         shareCont.appendChild(definition)
         addEvtListner()
 
