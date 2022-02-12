@@ -97,7 +97,7 @@ header{
     font-size: .9rem;
     font-family: 'Lato', sans-serif;
     height: clamp(40px,5vw,75px);
-    width: clamp(30px,5vw,55px);
+    width: clamp(31.5px,5vw,55px);
     border-radius: 7px;
     cursor:pointer;
     transform-origin: center;
