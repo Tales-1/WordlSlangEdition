@@ -122,7 +122,7 @@ enter.addEventListener("click",()=>{
     turnNo++
     counter = 0;
 }
-else{
+else if(play===true && counter < 4){
     showAlert("Not enough letters")}
 })
 
