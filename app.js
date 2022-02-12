@@ -79,7 +79,8 @@ backspace.addEventListener("click",()=>{
 enter.addEventListener("click",()=>{
     let copy = [...targetWord];
     let answer=[];
-    if(play){
+    
+    if(play && counter ===5){
     turn.forEach((letter,index)=>{
         answer.push(letter.innerHTML);
         for(let i = 0; i<targetWord.length;i++){
@@ -111,6 +112,7 @@ enter.addEventListener("click",()=>{
  
     if(checker ===5 || turn ===sixthTry){
         setTimeout(result,2500);
+        shareBtn.innerHTML = `<a href="whatsapp://send?text=I got ${turnNo}/6">Share Result</a>`;
         shareCont.appendChild(definition)
         addEvtListner()
         play = false;
@@ -120,7 +122,8 @@ enter.addEventListener("click",()=>{
     turnNo++
     counter = 0;
 }
-    
+else{
+    showAlert("Not enough letters")}
 })
 
 
@@ -132,16 +135,16 @@ shareBtn.addEventListener("click",()=>{
     updateClipboard(`
     I got ${turnNo}/6, try Wordl!`
     );
-    showAlert()
+    showAlert("Copied to clipboard!")
 })
 
 cog.addEventListener("click",()=>{
     result()
     if(play===false){
+        shareBtn.innerHTML =`<a href="whatsapp://send?text=I got ${turnNo}/6">Share Result</a>`;
         shareCont.appendChild(definition)
         addEvtListner()
-        
-       
+
     }
 
 })
@@ -244,14 +247,17 @@ function addEvtListner(){
 }
 
 
-function showAlert(){
+function showAlert(text){
+    let alertText = document.getElementById("alert-text")
     alert.classList.add("show");
+    alertText.innerHTML=text;
     setTimeout(function(){alert.classList.remove("show")}, 1000)
 }
 
 
 function result(){
     youWin.classList.add("show");
+    
     text.innerHTML = 
     `Result:
     ${turnNo}/6
