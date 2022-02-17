@@ -8,6 +8,9 @@ let play = true;
 setInterval(timeLeft,1000);
 timeLeft()
 
+
+
+
 let month = new Date().getMonth();
 let today = new Date().getDate();
 let thisMonth = new Date().getMonth();
@@ -44,11 +47,19 @@ let selectDefinition;
 const debug = document.getElementById("debug")
 
 
+
+
 // generate ID and select word of the day
 
 selectWord(words,targetWord)
+let definitionContent = "";
+const inputTarget = (targetWord)=>{
+    definitionContent = targetWord.reduce((a,b)=>a+b);
+};
+let insertDefinition = document.querySelector(".insert-definition");
+inputTarget(targetWord)
+insertDefinition.innerHTML= definitionContent;
 
-console.log(targetWord)
 //EVENT LISTENERS
 window.addEventListener("DOMContentLoaded",()=>{
     let items = getLocalStorage();
@@ -85,14 +96,17 @@ enter.addEventListener("click",()=>{
         answer.push(letter.innerHTML);
         for(let i = 0; i<targetWord.length;i++){
             if(letter.innerHTML === targetWord[i] && index === i){
+            letter.classList.remove("orange")
             setTimeout(changeGreen,270*index,letter)
             targetWord[i] = "."
             return;
            }
 
            else if(letter.innerHTML === targetWord[i] && index !== i){
+           letter.classList.remove("wrong")
            setTimeout(changeOrange,270*index,letter)
-           return;
+           
+           
            }
 
         }
@@ -112,8 +126,9 @@ enter.addEventListener("click",()=>{
  
     if(checker ===5 || turn ===sixthTry){
         setTimeout(result,2500);
-        shareBtn.innerHTML = `<a href="whatsapp://send?text=I got ${turnNo+1}/6 try Wordl Slang! @ https://tales-1.github.io/WordlSlangEdition/">Share Result</a>`;
+        shareBtn.innerHTML = `<a href="whatsapp://send?text=I got ${turnNo}/6 try Wordl Slang! @ https://tales-1.github.io/WordlSlangEdition/">Share Result</a>`;
         shareCont.appendChild(definition)
+        
         addEvtListner()
         play = false;
         
@@ -122,7 +137,7 @@ enter.addEventListener("click",()=>{
     turnNo++
     counter = 0;
 }
-else if(play===true && counter < 4){
+else{
     showAlert("Not enough letters")}
 })
 
@@ -140,8 +155,9 @@ shareBtn.addEventListener("click",()=>{
 
 cog.addEventListener("click",()=>{
     result()
+    console.log(play)
     if(play===false){
-        shareBtn.innerHTML =`<a href="whatsapp://send?text=I got ${turnNo+1}/6 try Wordl Slang! @ https://tales-1.github.io/WordlSlangEdition/">Share Result</a>`;
+        shareBtn.innerHTML =`<a href="whatsapp://send?text=I got ${turnNo}/6 try Wordl Slang! @ https://tales-1.github.io/WordlSlangEdition/">Share Result</a>`;
         shareCont.appendChild(definition)
         addEvtListner()
 
@@ -233,13 +249,15 @@ function changeOrange(letter){
 function changeGrey(letter){
     letter.classList.add("wrong");
     letter.style.transform = "rotateX(360deg)";
-    keys.forEach((key)=>{
-        if(key.innerHTML===letter.innerHTML){
-            key.style.background = "rgba(0,0,0,0.3)"
-        }
-    })
+    if(!letter.classList.contains("green") && !letter.classList.contains("orange")){
+        keys.forEach((key)=>{
+            if(key.innerHTML===letter.innerHTML){
+                key.style.background = "rgba(0,0,0,0.3)";
+            }
+    })}
 
 }
+
 function addEvtListner(){
     definition.addEventListener("click",()=>{
         definitionSlider.classList.add("slide");
@@ -320,6 +338,7 @@ function displayAnswers(){
     array.forEach((letter,index)=>{
         for(let i = 0; i<targetWord.length;i++){
             if(letter.innerHTML === targetWord[i] && index === i){
+            letter.classList.remove("orange")
             setTimeout(changeGreen,270*index,letter)
             checker++
             return;
@@ -327,7 +346,7 @@ function displayAnswers(){
 
            else if(letter.innerHTML === targetWord[i] && index !== i){
            setTimeout(changeOrange,270*index,letter)
-           return;
+           
            }
 
         }
