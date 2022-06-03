@@ -1,7 +1,7 @@
 export const words = [
     {
         month:5,
-        date:16,
+        date:3,
         definition:`<p>Middle aged woman, typically blonde, makes solutions to others' problems an inconvenience to her although she isn't even remotely affected.</p>
         <p class="example"> E.g. Karen complains that her favorite parking spot was replaced by a ramp for wheel chairs. She parks her car in the old spot anyway and shoots a vlog about it.</p>
         `,
