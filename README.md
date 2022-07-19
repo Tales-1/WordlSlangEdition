@@ -1,7 +1,8 @@
-# tales.github.io
+# Wordl Slang edition (INCOMPLETE)
 
-THIS IS A PROJECT I HAVE BEEN WORKING ON BASED ON THE POPULAR GAME 'WORDL'
+A project I decided to code 2 months after learning Javascript to test my ability.
 
-I HAVE AIMED TO RECREATE THE DIFFERENT FUNCTIONS REQUIRED TO PUT THE GAME TOGETHER.
+Though most of the functions work it is incomplete and requires a few fixes to the code such as:
 
-THE LIBRARY USED IS A CUSTOM BUILT ONE BASED ON SLANG WORDS WHICH I'VE COME ACROSS BEFORE
+- an updated library of words to go by
+- UI needs to be fixed so it works on all viewports
