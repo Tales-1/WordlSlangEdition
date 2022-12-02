@@ -8,8 +8,9 @@ body{
     display:flex;
     align-items: center;
     flex-direction: column;
+    justify-content: space-between;
     gap:.8em;
-    font-size: clamp(.9rem, 2.5vw, 2rem);
+    font-size: clamp(.9rem, 2.5vw, 1.3rem);
     
   }
 
@@ -48,7 +49,6 @@ header{
 
   .grid-container{
       display: grid;
-      
       margin-top: .2em;
       margin-bottom: .5em;
       place-items: center;
@@ -63,13 +63,13 @@ header{
   }
   
   .block{
-      display: grid;
-      place-items: center;
+     display: grid;
+     place-items: center;
     border: 2px solid rgba(0,0,0,0.3);
     font-size: 2rem;
     font-family:'Lato', sans-serif ;
-    height: clamp(50px,5vw,100px);
-    width: clamp(50px,5vw,100px);
+    height: clamp(55px,5vw,75px);
+    width: clamp(55px,5vw,75px);
     transition: all 500ms ease-in-out;
   }
   
@@ -77,7 +77,8 @@ header{
       display: flex;
       justify-content: center;
       text-align: center;
-      width: 100vw;
+      width: 100vw; 
+      margin-bottom: 2rem;
   }
   
   
@@ -96,8 +97,8 @@ header{
     background:rgb(255, 145, 56);
     font-size: .9rem;
     font-family: 'Lato', sans-serif;
-    height: clamp(40px,5vw,75px);
-    width: clamp(31.5px,5vw,55px);
+    height: clamp(45px,5vw,55px);
+    width: clamp(35.5px,5vw,55px);
     border-radius: 7px;
     cursor:pointer;
     transform-origin: center;
@@ -126,61 +127,59 @@ header{
     
 }
 
-  .enter{
-    grid-row:4;
-    padding: .5rem;
-    background:none;
-    border: none;
-    padding:.5rem 2rem;
-    cursor:pointer;
-    color: white;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    background:rgb(67, 197, 67);}
+.enter{
+  grid-row:4;
+  padding: .5rem;
+  background:none;
+  border: none;
+  padding:.5rem 2rem;
+  cursor:pointer;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  background:rgb(67, 197, 67);}
 
-    .return{
-        background:none;
-        border: none;
-        background:rgb(255, 1, 1);
-        color: white;
-        cursor: pointer;
-        padding:.5rem 2rem;
-        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+.return{
+     background:none;
+     border: none;
+     background:rgb(255, 1, 1);
+     color: white;
+     cursor: pointer;
+     padding:.5rem 2rem;
+     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
         
-    }
+}
     
-  .wrong{
-      background: rgba(0,0,0,0.4);
-      color: white;
-      font-weight: 600;
-  }
-  
-  .orange{
-      background: orange;
-      color: white;
-      font-weight: 600;
-  }
-  
-  .green{
-      background: rgb(13, 185, 13);
-      color: white;
-      font-weight: 600;
-  }
+.wrong{
+    background: rgba(0,0,0,0.4);
+    color: white;
+    font-weight: 600;
+}
 
-  .result-container{
-    box-sizing: border-box;
-      position: fixed;
-      display: grid;
-      place-items: center;
-      font-size: 2vw;
-      padding: 1rem;
-      background-color: white;
-      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-      inset: 10% 10% 10% 10%;
-      z-index: 100;
-      visibility: hidden;
-      
-  }
+.orange{
+    background: orange;
+    color: white;
+    font-weight: 600;
+}
 
+.green{
+    background: rgb(13, 185, 13);
+    color: white;
+    font-weight: 600;
+}
+.result-container{
+  box-sizing: border-box;
+    position: fixed;
+    display: grid;
+    place-items: center;
+    font-size: 2vw;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    inset: 10% 10% 10% 10%;
+    z-index: 100;
+    visibility: hidden;
+    
+}
  
 
   .result-box{
@@ -212,7 +211,7 @@ header{
     margin-top: 2em;
     
   }
-a{
+a {
   text-decoration: none;
   font-size: 1rem;
   color:white;
@@ -272,8 +271,8 @@ a:hover{
  } 
 
  .slide{
-  transform:translateX(0%);
-  opacity: 100%;
+    transform:translateX(0%);
+    opacity: 100%;
  }
 
  
@@ -281,114 +280,113 @@ a:hover{
  h4{
    font-size: 1.3rem;
  }
+
 .example{
   font-style: italic;
+}
+
+.next-wordl{
+  text-align: center;
+  margin-inline:auto;
+  font-size: 1.2rem;
+}
+
+#result{
+  margin: auto;
+  font-size: 2rem;
+}
+
+.time-el{
+  display: flex;
+  gap: .4rem;
+}
+
+.time{
+  padding: .3rem;
   
 }
-  .next-wordl{
-    text-align: center;
-    margin-inline:auto;
-    font-size: 1.2rem;
-  }
 
-  #result{
-    margin: auto;
-    font-size: 2rem;
-  }
-  .time-el{
-    display: flex;
-    gap: .4rem;
-    
-  }
+.show{
+    visibility: visible;
+}
 
-  .time{
-    padding: .3rem;
-    
-  }
-
-
-  .show{
-      visibility: visible;
-  }
-
-  .closebtn{
-    position: absolute;
-    top:2em;
-    right: 3em;
-    cursor: pointer;
-    padding: .3rem;
-    
-  }
-  .cross{
-    position: absolute;
-    height: 3em;
-    width: 3px;
-    background: black;
-    transform: rotate(45deg);
-    
-  }
-
-  .cross::before{
-    content: "";
-    position: absolute;
-    height: 3em;
-    transform: rotate(-90deg);
-    width: 3px;
-    background: black;
-    cursor: pointer;
-  }
-
-
-
-  #triangle{
-    position: absolute;
-    right: 1em;
-    bottom: 2em;
-    cursor: pointer;
-    width: 0;
-    height: 0;
-    border: 15px solid transparent;
-    border-top: 0;
-    border-bottom: 20px solid white;
-    transform: rotate(90deg);
-  }
-  .stop{
-    opacity: 100%;
-  }
-
-
-  @media (min-width:800px){
-    .result-container{
-      inset: 20%;
-    }
-
-    .closebtn{
-      top: 1em;
-      right: 1;
-    }
-    .cross{
-      height: 1.5em;
-      width: 2px;
-      
-    }
+.closebtn{
+  position: absolute;
+  top:2em;
+  right: 3em;
+  cursor: pointer;
+  padding: .3rem;
   
-    .cross::before{
-      height: 1.5em;
-      width: 2px;
-      
-    }
-  }
+}
 
-  #debug{
-    position: absolute;
-    bottom: 1em;
-    right:1em;
-    padding: .1rem;
-    border: none;
-    border-bottom: 1px solid red;
-    background: none;
-  }
-  #debug:hover{
-    opacity: 80%;
-    cursor: pointer;
-  }
+.cross{
+  position: absolute;
+  height: 3em;
+  width: 3px;
+  background: black;
+  transform: rotate(45deg);
+  
+}
+
+.cross::before{
+  content: "";
+  position: absolute;
+  height: 3em;
+  transform: rotate(-90deg);
+  width: 3px;
+  background: black;
+  cursor: pointer;
+}
+
+#triangle{
+  position: absolute;
+  right: 1em;
+  bottom: 2em;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-top: 0;
+  border-bottom: 20px solid white;
+  transform: rotate(90deg);
+}
+
+.stop{
+  opacity: 100%;
+}
+
+ @media (min-width:800px){
+   .result-container{
+     inset: 20%;
+   }
+   .closebtn{
+     top: 1em;
+     right: 1;
+   }
+   .cross{
+     height: 1.5em;
+     width: 2px;
+     
+   }
+ 
+   .cross::before{
+     height: 1.5em;
+     width: 2px;
+     
+   }
+}
+
+ #debug{
+   position: absolute;
+   bottom: 1em;
+   right:1em;
+   padding: .1rem;
+   border: none;
+   border-bottom: 1px solid red;
+   background: none;
+}
+
+#debug:hover{
+   opacity: 80%;
+   cursor: pointer;
+}
