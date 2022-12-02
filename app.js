@@ -1,20 +1,12 @@
 import {words} from "./library.js";
 
 
-
-
 let play = true;
 
 setInterval(timeLeft,1000);
 timeLeft()
 
 
-
-
-let month = new Date().getMonth();
-let today = new Date().getDate();
-let thisMonth = new Date().getMonth();
-let current = new Date(2022,month,today,0,0).getTime();
 const firstTry = document.querySelectorAll(".first");
 const secondTry = document.querySelectorAll(".second");
 const thirdTry = document.querySelectorAll(".third");
@@ -27,7 +19,6 @@ const keys = document.querySelectorAll(".key");
 const container = document.querySelector(".container");
 const enter = document.querySelector(".enter");
 const backspace = document.querySelector(".return");
-let timeContainer = document.getElementById("time-el");
 const gridContainer = document.querySelector(".grid-container");
 const closeBtn = document.querySelector(".closebtn");
 const rows = Array.from(gridContainer.children);
@@ -42,7 +33,6 @@ const definitionBtn = document.createElement("p");
 definitionBtn.setAttribute("id", "definition");
 definitionBtn.innerHTML="Definition";
 const shareCont = document.querySelector(".share")
-const triangle = document.getElementById("triangle")
 let selectDefinition;
 const debug = document.getElementById("debug")
 
@@ -170,22 +160,22 @@ function updateClipboard(newClip) {
 // Local storage
 
 
-function getLocalStorage(){
-    return localStorage.getItem("list") ? //check if localStorage,getItem("list") exists 
-    JSON.parse(localStorage.getItem("list")) : // items = list which is an array 
+function getLocalStorage(key){
+    return localStorage.getItem(key) ? //check if localStorage,getItem("list") exists 
+    JSON.parse(localStorage.getItem(key)) : // items = list which is an array 
     [];
 }
 
 function addToLocalStorage(row){
     const obj = {row}; //shorthand {id,value} as parameters match object property
     // check if item exists in the list
-    let items = getLocalStorage();
+    let items = getLocalStorage("list");
     items.push(obj);
     localStorage.setItem("list", JSON.stringify(items));
 }
 
 function removeFromLocalStorage(){
-    let items = getLocalStorage();
+    let items = getLocalStorage("list");
     items = []
     localStorage.setItem("list",JSON.stringify(items))
 }
@@ -193,8 +183,8 @@ function removeFromLocalStorage(){
 // DISPLAY PREVIOUS RESULT
 
 function displayAnswers(){
-    let items = getLocalStorage();
-    let checker=0;
+    let items = getLocalStorage("list");
+    let checker = 0;
     if(items.length > 0){
          items.forEach((item,index)=>{
               for(let i = 0;i<rows.length-1;i++){
@@ -236,8 +226,6 @@ function displayAnswers(){
 
 function timeLeft(){
     const timeContainer = document.getElementById("time-el");
-    let month = new Date().getMonth();
-    let today = new Date().getDate();
     let thisMonth = new Date().getMonth();
     let metrics = Array.from(timeContainer.children);
     let tomorrow = new Date().getDate()+1;
@@ -285,11 +273,24 @@ function timeLeft(){
     })}
 
 
-function selectWord(arr,tg){
-    let today = new Date().getDate();
-    let thisMonth = new Date().getMonth();
+function selectWord(arr){
+    let wordOfTheDay = getLocalStorage("word")
+    let today = new Date().toISOString().slice(0, 10)
+    if(wordOfTheDay.length === 0) {
+        wordOfTheDay = {counter:1, date:new Date().toISOString().slice(0, 10)}
+        localStorage.setItem("word", JSON.stringify(wordOfTheDay))
+    } else if (wordOfTheDay.date !== today){
+        autoRefresh()
+        removeFromLocalStorage()
+        wordOfTheDay.counter++
+        if(wordOfTheDay.counter > 22){
+            wordOfTheDay.counter = 1
+        }
+        wordOfTheDay.date = today
+        localStorage.setItem("word",JSON.stringify(wordOfTheDay))
+    }
     arr.forEach((item,index)=>{
-        if(arr[index].date===today && arr[index].month===thisMonth){
+        if(item.id === wordOfTheDay.counter){
             targetWord = arr[index].word;
             selectDefinition = arr[index].definition;
             definitionSlider.innerHTML += selectDefinition;
@@ -303,12 +304,12 @@ function selectWord(arr,tg){
 
 // generate ID and select word of the day
 
-selectWord(words,targetWord)
+selectWord(words)
 
 
 //EVENT LISTENERS
 window.addEventListener("DOMContentLoaded",()=>{
-    let items = getLocalStorage();
+    let items = getLocalStorage("list")
     if(items.length>0){
         refreshDisplay(items);
     }
@@ -423,7 +424,8 @@ debug.addEventListener("click",()=>{
 
 
 
-let definitionContent = "";
-definitionContent = targetWord.reduce((a,b)=>a+b);
+let wordOfTheDay = "";
+wordOfTheDay = targetWord.reduce((a,b)=>a+b);
 let insertDefinition = document.querySelector(".insert-definition");
-insertDefinition.innerHTML= definitionContent;
+
+insertDefinition.innerHTML= `Word: ${wordOfTheDay}`;
