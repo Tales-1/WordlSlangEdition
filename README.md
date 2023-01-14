@@ -14,4 +14,5 @@ This is a project I decided to code 2 months after learning JavaScript. It was q
 Though most of the functions work it is incomplete and requires a few fixes to the code such as:
 
 - an updated library of words to go by ** Library now loops through and repeats after 22 days
-- ~~UI needs to be fixed so it works on all viewports~~ ** Complete
+- ~~UI needs to be fixed so it works on all viewports~~ ** Complete: Update: UI still buggy 14/03/2023, not accessible on all viewports
+
