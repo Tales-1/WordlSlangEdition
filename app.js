@@ -319,6 +319,8 @@ container.addEventListener("click", (e) => {
 backspace.addEventListener("click", () => {
   turn[counter - 1].innerHTML = "";
   counter--;
+  backspace.classList.add("focus")
+  setTimeout(()=>backspace.classList.remove("focus"),100)
 });
 
 enter.addEventListener("click", () => {
@@ -369,6 +371,9 @@ enter.addEventListener("click", () => {
   } else {
     showAlert("Not enough letters");
   }
+
+  enter.classList.add("focus")
+  setTimeout(()=>enter.classList.remove("focus"),100)
 });
 
 closeBtn.addEventListener("click", () => {
