@@ -1,4 +1,4 @@
-# Wordl Slang edition (INCOMPLETE)
+# Wordl Slang edition 
 
 ![WordlSlang](https://user-images.githubusercontent.com/84051594/204838673-8370464d-04d2-4d63-8515-1877626897d5.png)
 
