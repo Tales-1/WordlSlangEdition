@@ -8,7 +8,7 @@ This is a project I decided to code 2 months after learning JavaScript. It was q
 ## Description:
 - Slang words were chosen from "urbandictionary.com" 
 - Attempts are stored in local storage for a day and refreshed when there is a new word of the day
-- Definition of each word is avaiable after the word is correctly guessed or the player runs out of tries
+- Definition of each word is available after the word is correctly guessed or the player runs out of tries
 
 
 Though most of the functions work it is incomplete and requires a few fixes to the code such as:
